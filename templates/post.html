@@ -1,0 +1,20 @@
+<template name="post">
+    <div class="row item">
+      <div class="col-md-8 col-md-offset-2 text-left box">
+        <h2 class="text-center">{{title}}</h2>
+        <br>
+        <p>{{body}}</p>
+        <br>
+        <p>Tag: <strong>{{tag}}</strong></p>
+        <p>Author: <strong>{{author}}</strong></p>
+        <br>
+        {{#if isOwner}}
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="remove-post btn btn-danger"><i class="fa fa-trash fa-lg"></i> Borrar</button>
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+</template>

@@ -3,9 +3,11 @@
 .box{
   border:2px solid #000;
   border-radius: 2px;
+  padding: 5px;
 }
 .item{
   margin: 10px 0;
+  padding: 5px;
 }
 .row{
   margin-right: 0;
