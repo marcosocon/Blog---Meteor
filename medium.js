@@ -24,6 +24,8 @@ if (Meteor.isClient) {
           body:body,
           owner: Meteor.userId(),
           author:Meteor.user().emails[0].address,
+          thumbsup:0,
+          thumbsdown:0,
           tag:tag
         });
 
@@ -44,7 +46,25 @@ if (Meteor.isClient) {
   Template.post.events({
     "click .remove-post":function(){
       Posts.remove(this._id)
-    }
+    },
+    "click .up":function(){
+      var id = this._id;
+      var thumbsup = this.thumbsup;
+      Posts.update(id, {
+      $set:{
+        thumbsup: thumbsup+1
+      }
+    });
+  },
+    "click .down":function(){
+      var id = this._id;
+      var thumbsdown = this.thumbsdown;
+      Posts.update(id, {
+      $set:{
+        thumbsdown: thumbsdown+1
+      }
+    });
+  }
   });
 }
 
