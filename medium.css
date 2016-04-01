@@ -1,0 +1,14 @@
+/* CSS declarations go here */
+
+.box{
+  border:2px solid #000;
+  border-radius: 2px;
+}
+.item{
+  margin: 10px 0;
+}
+.row{
+  margin-right: 0;
+  margin-left: 0;
+
+}

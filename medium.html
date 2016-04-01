@@ -1,0 +1,44 @@
+<head>
+  <title>medium</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">Bienvenido a Medium - Argentina!</h1>
+
+    {{> postform}}
+    {{#each posts}}
+      {{> post}}
+    {{/each}}
+  </div>
+</body>
+
+<template name="postform">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form class="post-form">
+          <label for="title">Título</label>
+          <input type="text" name="title" class="form-control" />
+          <label for="title">Contenido</label>
+          <textarea name="body" cols="30" rows="10" class="form-control" ></textarea>
+          <label for="title">Tag</label>
+          <input type="text" name="tag" class="form-control" />
+          <br>
+          <button type="submit" value="Submit!" class="btn btn-success">Submit Post</button>
+        </form>
+      </div>
+    </div>
+</template>
+
+<template name="post">
+    <div class="row item">
+      <div class="col-md-8 col-md-offset-2 text-left box">
+        <h2 class="text-center">{{title}}</h2>
+        <br>
+        <p>{{body}}</p>
+        <br>
+        <p>Tag: <strong>{{tag}}</strong></p>
+        <br>
+      </div>
+    </div>
+</template>
