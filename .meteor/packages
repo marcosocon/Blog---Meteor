@@ -22,3 +22,6 @@ twbs:bootstrap
 accounts-password
 accounts-ui
 fortawesome:fontawesome
+accounts-twitter
+accounts-facebook
+accounts-github
