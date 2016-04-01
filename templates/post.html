@@ -6,19 +6,17 @@
         <p>{{body}}</p>
         <br>
         <p>Tag: <strong>{{tag}}</strong></p>
-        <p>Author: <strong>{{author}}</strong></p>
         <br>
-        {{#if isOwner}}
         <div class="row">
           <div class="col-xs-12">
+        {{#if isOwner}}
             <button class="remove-post btn btn-danger"><i class="fa fa-trash fa-lg"></i> Borrar</button>
-            <button class="up"><i class=" fa fa-thumbs-up fa-lg"> <strong>{{thumbsup}}</strong></i></button>
-            <button class="down"><i class=" fa fa-thumbs-down fa-lg"> <strong>{{thumbsdown}}</strong></i></button>
-
-
+        {{/if}}
+            <button class="up"><i class=" fa fa-thumbs-up fa-lg"></i></button>
+            <strong>{{thumbs}}</strong>
+            <button class="down"><i class=" fa fa-thumbs-down fa-lg"></i></button>
           </div>
         </div>
-        {{/if}}
       </div>
     </div>
 </template>

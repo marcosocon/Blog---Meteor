@@ -4,7 +4,7 @@ if (Meteor.isClient) {
 //BODY - helpers.
   Template.body.helpers({
     posts:function(){
-      return Posts.find();
+      return Posts.find({}, {sort: {thumbs: -1}});
     }
   });
 //POSTFORM - events.
@@ -23,16 +23,14 @@ if (Meteor.isClient) {
           title:title,
           body:body,
           owner: Meteor.userId(),
-          author:Meteor.user().emails[0].address,
-          thumbsup:0,
-          thumbsdown:0,
+          thumbs:0,
           tag:tag
         });
 
         event.target.title.value = '';
         event.target.body.value = '';
         event.target.tag.value = '';
-        return false
+        return false;
       }
     }
   });
@@ -49,19 +47,19 @@ if (Meteor.isClient) {
     },
     "click .up":function(){
       var id = this._id;
-      var thumbsup = this.thumbsup;
+      var thumbs = this.thumbs;
       Posts.update(id, {
       $set:{
-        thumbsup: thumbsup+1
+        thumbs: thumbs+1
       }
     });
   },
     "click .down":function(){
       var id = this._id;
-      var thumbsdown = this.thumbsdown;
+      var thumbs = this.thumbs;
       Posts.update(id, {
       $set:{
-        thumbsdown: thumbsdown+1
+        thumbs: thumbs-1
       }
     });
   }
