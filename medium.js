@@ -19,13 +19,7 @@ if (Meteor.isClient) {
         return false
       }
       else{
-        Posts.insert({
-          title:title,
-          body:body,
-          owner: Meteor.userId(),
-          thumbs:0,
-          tag:tag
-        });
+        Meteor.call("addPost",title,body,tag);
 
         event.target.title.value = '';
         event.target.body.value = '';
@@ -43,26 +37,19 @@ if (Meteor.isClient) {
 //POST - events.
   Template.post.events({
     "click .remove-post":function(){
-      Posts.remove(this._id)
+      Meteor.call("removePost", this._id);
     },
     "click .up":function(){
       var id = this._id;
       var thumbs = this.thumbs;
-      Posts.update(id, {
-      $set:{
-        thumbs: thumbs+1
-      }
-    });
-  },
-    "click .down":function(){
-      var id = this._id;
-      var thumbs = this.thumbs;
-      Posts.update(id, {
-      $set:{
-        thumbs: thumbs-1
-      }
-    });
+      Meteor.call("thumbsUp", id, thumbs);
+      $(".up").addClass("thumbsup");
+      Meteor.call("disableButtons");
   }
+});
+
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_ONLY'
   });
 }
 
@@ -71,3 +58,32 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+
+//Meteor secure methods.
+
+Meteor.methods({
+  addPost:function(title, body ,tag){
+    Posts.insert({
+      title:title,
+      body:body,
+      owner: Meteor.userId(),
+      thumbs:0,
+      upvoters:{},
+      tag:tag
+    });
+  },
+  removePost:function(id){
+    Posts.remove(id);
+  },
+  thumbsUp:function(id, thumbs){
+    Posts.update(id, {
+      $set:{
+        thumbs: thumbs+1
+      }
+    });
+  },
+  disableButtons:function(){
+    $(".up").attr("disabled", "disabled");
+  }
+});

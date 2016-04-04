@@ -12,5 +12,13 @@
 .row{
   margin-right: 0;
   margin-left: 0;
-
+}
+.thumbsup{
+  color: green;
+}
+.thumbsdown{
+  color: red;
+}
+.up, .down{
+  border:none;
 }
